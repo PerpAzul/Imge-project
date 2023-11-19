@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Shoot2",
+                    "type": "Button",
+                    "id": "233a7c3e-734d-46ac-bc7c-996e9208735e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Aim",
                     "type": "Button",
                     "id": "f10b1fcd-51a9-4d09-8dc6-870861568350",
@@ -72,6 +81,15 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "3adc92b5-2249-4d08-8601-dce62a5aa1df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reload2",
+                    "type": "Button",
+                    "id": "13d624f0-4b41-489a-b702-e368ec63834a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -201,7 +219,7 @@
                 {
                     "name": "",
                     "id": "3e9dbc44-de43-40d6-b276-02eda03aaae1",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -223,7 +241,7 @@
                 {
                     "name": "",
                     "id": "68a41069-215a-47c8-82a7-9656299ff932",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -316,6 +334,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChangeWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40057ec2-0a98-47be-bfee-0ec8fe227930",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "566a3455-ccd4-4383-86bc-42d83231b0a7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b548459-1882-4daa-94a8-b6e8d5771f99",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed3c7101-4341-46bf-8bde-87ce90a251e2",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
