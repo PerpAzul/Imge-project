@@ -10407,25 +10407,6 @@ MonoBehaviour:
   reloadTime: 1
   isReloading: 0
   flash: {fileID: 8956288359033150347}
---- !u!114 &3799194907431871785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011230868610646254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbebc95794aadae4498c5d1cf32abe40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fpsCam: {fileID: 0}
-  range: 100
-  maxAmmo: 10
-  currentAmmo: 10
-  reloadTime: 1
-  isReloading: 0
-  flash: {fileID: 0}
 --- !u!4 &1011230868610873022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 457962, guid: 2c3055a11cb8f8540a181490a4c34b7c, type: 3}
