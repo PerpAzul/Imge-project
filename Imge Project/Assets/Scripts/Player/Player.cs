@@ -12,9 +12,16 @@ public class Player : MonoBehaviour
 
     public float baseSpeed = 10f;
     public float speed;
-    public float gravity = -9.8f;
+    public float gravity = -10f;
     public float jumpHeight;
     
+    //Dash
+    [SerializeField] private Transform orientation;
+    [SerializeField] private float dashForce;
+    [SerializeField] private float dashUpwardForce;
+    [SerializeField] private float cooldownTime = 2;
+    private float nextDashTime = 0;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -46,6 +53,16 @@ public class Player : MonoBehaviour
         if (isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+        }
+    }
+
+    public void Dash()
+    {
+        if (Time.time > nextDashTime)
+        {
+            Vector3 move = orientation.forward * dashForce + orientation.up * dashUpwardForce;
+            controller.Move(move);
+            nextDashTime = Time.time + cooldownTime;
         }
     }
 

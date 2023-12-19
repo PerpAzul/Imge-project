@@ -12,7 +12,6 @@ public class InputManager : MonoBehaviour
 
     void Awake()
     {
-        
         playerInput = new PlayerInput();
         playerActions = playerInput.Player;
 
@@ -22,6 +21,7 @@ public class InputManager : MonoBehaviour
         playerActions.Jump.performed += ctx => player.Jump();
         playerActions.Run.started += ctx => player.StartRun();
         playerActions.Run.canceled += ctx => player.EndRun();
+        playerActions.Dash.performed += ctx => player.Dash();
     }
 
     private void FixedUpdate()
