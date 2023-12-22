@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
         playerActions.Run.started += ctx => player.StartRun();
         playerActions.Run.canceled += ctx => player.EndRun();
         playerActions.Dash.performed += ctx => player.Dash();
+        playerActions.ForcePush.performed += ctx => look.GravityPush();
     }
 
     private void FixedUpdate()
