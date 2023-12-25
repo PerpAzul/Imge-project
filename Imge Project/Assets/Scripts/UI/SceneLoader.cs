@@ -14,5 +14,9 @@ public class SceneLoader : ScriptableObject
         SceneManager.LoadScene("DemoScene");
     }
 
-    
+    public static void Exit()
+    {
+        Application.Quit();
+    }
+
 }
