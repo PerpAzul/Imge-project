@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/POLYGON city pack/scene/Menu.unity
+    guid: 22938c81899b8d64d848a44c8eb9264a
+  - enabled: 1
+    path: Assets/POLYGON city pack/scene/DemoScene.unity
+    guid: 7759de288f5d4ee449a0ca5e2244944a
   m_configObjects: {}
