@@ -1151,8 +1151,8 @@ MonoBehaviour:
   m_text: "(more details about the game...)\n \n\n\n\nMouse -> look around\n Left
     mouse button -> fire                 Right mouse button -> aim\n F -> pick up
     the ammo                     R -> load\n W -> forward                                  
-    S -> backward \n A -> left                                          D -> right\n
-    P -> Pause and adjust mouse speed\n\n"
+    S -> backward \n A -> left                                          D -> right\nEsc
+    -> Pause \n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
