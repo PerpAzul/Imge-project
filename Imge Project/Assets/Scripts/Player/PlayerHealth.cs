@@ -37,6 +37,6 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth--;
         durationTimer = 0;
-        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.5f);
+        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1f);
     }
 }

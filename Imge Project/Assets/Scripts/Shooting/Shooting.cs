@@ -26,6 +26,7 @@ public class Shooting : MonoBehaviour
     
     private bool isReloading;
     public bool isShooting;
+    public bool stateOfShooting;
     
     public ParticleSystem flash;
 
@@ -33,9 +34,10 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
-        maxAmmo = 20f;
         ammo = maxReload;
         ammoCount.text = ammo + "/10";
+        isShooting = false;
+        stateOfShooting = false;
         hitmarkerUI.gameObject.SetActive(false);
         crosshairUI.gameObject.SetActive(true);
     }
@@ -43,15 +45,10 @@ public class Shooting : MonoBehaviour
     private void Update()
     {
         ammoCount.text = ammo + "/" + maxAmmo;
-    }
-
-    public void Shoot()
-    {
-        if (ammo > 0 && isShooting == false)
+        
+        if (ammo > 0 && isShooting == true)
         {
-            isShooting = true;
             ammo--;
-            Invoke("ResetShot", timeBetweenShooting);
             flash.Play();
 
             float x = Random.Range(-spread, spread);
@@ -66,11 +63,30 @@ public class Shooting : MonoBehaviour
                 if (target != null)
                 {
                     hitActive();
-                    Invoke("hitDisable", 0.2f);
+                    Invoke("hitDisable", 0.5f);
                     target.TakeDamage(damage);
                 }
             }
+            
+            ResetShoot();
         }
+    }
+
+    public void StartShoot()
+    {
+        isShooting = true;
+        stateOfShooting = true;
+    }
+
+    public void EndShot()
+    {
+        isShooting = false;
+        stateOfShooting = false;
+    }
+
+    public void ResetShoot()
+    {
+        StartCoroutine(ResetShotC()); 
     }
 
     IEnumerator Reloading()
@@ -110,12 +126,14 @@ public class Shooting : MonoBehaviour
 
     public void pickAmmo()
     {
-        maxAmmo += 5;
+        maxAmmo += maxReload;
     }
 
-    public void ResetShot()
+    IEnumerator ResetShotC()
     {
         isShooting = false;
+        yield return new WaitForSeconds(timeBetweenShooting);
+        isShooting = stateOfShooting;
     }
 
     private void OnEnable()
