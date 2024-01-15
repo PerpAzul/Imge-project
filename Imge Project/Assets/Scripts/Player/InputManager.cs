@@ -4,15 +4,15 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public PlayerInput playerInput;
-    public PlayerInput.PlayerActions playerActions;
+    public PlayerInput2 playerInput;
+    public PlayerInput2.PlayerActions playerActions;
     
     private Player player;
     private PlayerLook look;
 
     void Awake()
     {
-        playerInput = new PlayerInput();
+        playerInput = new PlayerInput2();
         playerActions = playerInput.Player;
 
         player = GetComponent<Player>();
@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
     { 
         player.Move(playerActions.Move.ReadValue<Vector2>());
     }
-
+    
     private void LateUpdate()
     {
         look.Look(playerActions.Look.ReadValue<Vector2>());

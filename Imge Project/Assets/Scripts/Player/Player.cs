@@ -21,10 +21,30 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashUpwardForce;
     [SerializeField] private float cooldownTime = 2;
     private float nextDashTime = 0;
+    
+    //Init
+    [Header("Init Settings")]
+    [SerializeField] private Material playerMateria1;
+    [SerializeField] private Material playerMateria2;
+    public int playerIndex;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+    }
+    
+    public void Init(int id)
+    {
+        Debug.Log("index " + playerIndex);
+        if (id == 0)
+        {
+            playerIndex = 0;
+        }
+        else
+        {
+            playerIndex = 1;
+        }
+        GetComponent<Renderer>().material = id == 0 ? playerMateria1 : playerMateria2;
     }
 
     void Update()
