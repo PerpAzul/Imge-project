@@ -15,7 +15,6 @@ public class PlayerLook : MonoBehaviour
     public float ySensitivity = 30f;
     
     private bool _canUsePowers = true;
-
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -92,5 +91,11 @@ public class PlayerLook : MonoBehaviour
         yield return new WaitForSeconds(time);
         _canUsePowers = true;
         Debug.Log("End of StartCountdown");
+    }
+    //for changing sensitivity
+    public void SetSensitivity(float sensitivity)
+    {
+        xSensitivity = sensitivity;
+        ySensitivity = sensitivity;
     }
 }

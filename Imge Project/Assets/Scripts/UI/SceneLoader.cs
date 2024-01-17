@@ -6,6 +6,7 @@ public class SceneLoader : ScriptableObject
 {
     public static void LoadMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 
