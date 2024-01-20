@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     private float attackTimer;
     private GameObject player;
     private NavMeshAgent agent;
-    //public Animator zombieAnimator;
+    public Animator zombieAnimator;
 
     private void Start()
     {
@@ -28,9 +28,9 @@ public class Enemy : MonoBehaviour
             attackTimer += Time.deltaTime;
             if (attackTimer > 1f)
             {
-                //zombieAnimator.SetBool("isAttacking", true);
+                zombieAnimator.SetBool("isAttacking", true);
                 Attack();
-                //zombieAnimator.SetBool("isAttacking", false);
+                zombieAnimator.SetBool("isAttacking", false);
                 attackTimer = 0;   
             }
         }
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        //zombieAnimator.SetBool("Dead", true);
+        zombieAnimator.SetBool("Dead", true);
         Destroy(gameObject);
     }
 
