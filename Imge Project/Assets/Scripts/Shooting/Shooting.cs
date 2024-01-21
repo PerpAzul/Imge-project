@@ -27,6 +27,7 @@ public class Shooting : MonoBehaviour
     private bool isReloading;
     public bool isShooting;
     public bool stateOfShooting;
+    public bool betweenShooting;
     
     public ParticleSystem flash;
 
@@ -38,6 +39,7 @@ public class Shooting : MonoBehaviour
         ammoCount.text = ammo + "/10";
         isShooting = false;
         stateOfShooting = false;
+        betweenShooting = false;
         hitmarkerUI.gameObject.SetActive(false);
         crosshairUI.gameObject.SetActive(true);
     }
@@ -74,8 +76,11 @@ public class Shooting : MonoBehaviour
 
     public void StartShoot()
     {
-        isShooting = true;
-        stateOfShooting = true;
+        if (betweenShooting == false)
+        {
+            isShooting = true;
+            stateOfShooting = true;   
+        }
     }
 
     public void EndShot()
@@ -131,9 +136,11 @@ public class Shooting : MonoBehaviour
 
     IEnumerator ResetShotC()
     {
+        betweenShooting = true;
         isShooting = false;
         yield return new WaitForSeconds(timeBetweenShooting);
         isShooting = stateOfShooting;
+        betweenShooting = false;
     }
 
     private void OnEnable()
