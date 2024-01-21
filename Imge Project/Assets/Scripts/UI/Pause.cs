@@ -11,7 +11,6 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     [SerializeField]
     private GameObject Panel;
-
     private void Awake()
     {
         Panel.SetActive(false);
@@ -23,7 +22,6 @@ public class Pause : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
-            isPaused = true;
             Panel.SetActive(true);
             PauseGame();
         }
@@ -31,6 +29,7 @@ public class Pause : MonoBehaviour
     
     private void PauseGame()
     {
+        isPaused = true;
         Time.timeScale = 0f;
     }
 
