@@ -15,7 +15,7 @@ public class SceneLoader : ScriptableObject
         Time.timeScale = 1f;
         SceneManager.LoadScene("DemoScene");
     }
-
+    
     public static void Exit()
     {
         Application.Quit();

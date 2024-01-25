@@ -27,10 +27,18 @@ public class Player : MonoBehaviour
     [SerializeField] private Material playerMateria1;
     [SerializeField] private Material playerMateria2;
     public int playerIndex;
-
+    //music
+    public AudioClip walkMusic;
+    public AudioClip runMusic;
+    public AudioSource JumpMusicSource;
+    public AudioSource DashMusicSource;
+    private AudioSource _audioSource;
+    
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        _audioSource = audioSources[0];
     }
     
     public void Init(int id)
@@ -66,6 +74,12 @@ public class Player : MonoBehaviour
             playerVelocity.y = -2f;
         }
         controller.Move(playerVelocity * Time.deltaTime);
+
+        _audioSource.clip = running ? runMusic : walkMusic;
+        if (input!=Vector2.zero&&isGrounded && !this._audioSource.isPlaying)
+        {
+            _audioSource.Play();
+        }
     }
 
     public void Jump()
@@ -73,6 +87,7 @@ public class Player : MonoBehaviour
         if (isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            JumpMusicSource.Play();
         }
     }
 
@@ -83,16 +98,19 @@ public class Player : MonoBehaviour
             Vector3 move = orientation.forward * dashForce + orientation.up * dashUpwardForce;
             controller.Move(move);
             nextDashTime = Time.time + cooldownTime;
+            DashMusicSource.Play();
         }
     }
 
     public void StartRun()
     {
         speed *= 1.5f;
+        running = true;
     }
 
     public void EndRun()
     {
         speed = baseSpeed;
+        running = false;
     }
 }

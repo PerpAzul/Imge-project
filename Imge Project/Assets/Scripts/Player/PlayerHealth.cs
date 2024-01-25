@@ -12,11 +12,13 @@ public class PlayerHealth : MonoBehaviour
     public float duration;
     public float fadeSpeed;
     private float durationTimer;
-
+    private AudioSource damagedMusic;
     void Start()
     {
         currentHealth = maxHealth;
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        damagedMusic = audioSources[3];
     }
     
     void Update()
@@ -38,5 +40,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth--;
         durationTimer = 0;
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1f);
+        damagedMusic.Play();
     }
 }

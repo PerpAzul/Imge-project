@@ -20,7 +20,7 @@ public class PlayerLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
+    
     public void Look(Vector2 input)
     {
         float mouseX = input.x;
@@ -91,11 +91,5 @@ public class PlayerLook : MonoBehaviour
         yield return new WaitForSeconds(time);
         _canUsePowers = true;
         Debug.Log("End of StartCountdown");
-    }
-    //for changing sensitivity
-    public void SetSensitivity(float sensitivity)
-    {
-        xSensitivity = sensitivity;
-        ySensitivity = sensitivity;
     }
 }

@@ -32,7 +32,12 @@ public class Shooting : MonoBehaviour
     public ParticleSystem flash;
 
     public Animator animator;
-
+    //Animation for hit something
+    public GameObject hitEffectPrefab;
+    //for music
+    private AudioSource audioSource;
+    public AudioClip fire;
+    public AudioClip reload;
     private void Start()
     {
         ammo = maxReload;
@@ -42,6 +47,7 @@ public class Shooting : MonoBehaviour
         betweenShooting = false;
         hitmarkerUI.gameObject.SetActive(false);
         crosshairUI.gameObject.SetActive(true);
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -52,7 +58,9 @@ public class Shooting : MonoBehaviour
         {
             ammo--;
             flash.Play();
-
+            //fire music
+            audioSource.clip = fire;
+            audioSource.Play();
             float x = Random.Range(-spread, spread);
             float y = Random.Range(-spread, spread);
             Vector3 direction = cam.transform.forward + new Vector3(x, y, 0);
@@ -68,6 +76,9 @@ public class Shooting : MonoBehaviour
                     Invoke("hitDisable", 0.5f);
                     target.TakeDamage(damage);
                 }
+                
+                GameObject hitEffect = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(hitEffect, 0.5f);
             }
             
             ResetShoot();
@@ -125,7 +136,10 @@ public class Shooting : MonoBehaviour
     {
         if (isReloading == false && maxAmmo > 0 && ammo < maxReload)
         {
-            StartCoroutine(Reloading());   
+            StartCoroutine(Reloading());  
+            //music for reloading
+            audioSource.clip = reload;
+            audioSource.Play();
         }
     }
 
