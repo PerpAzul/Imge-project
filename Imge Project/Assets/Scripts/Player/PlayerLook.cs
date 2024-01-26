@@ -27,14 +27,14 @@ public class PlayerLook : MonoBehaviour
         float mouseY = input.y;
 
         //calculate camera rotation for looking up and down
-        rotation -= (mouseY * Time.deltaTime) * ySensitivity;
+        rotation -= mouseY * ySensitivity;
         rotation = Mathf.Clamp(rotation, -80f, 80f);
 
         //apply this to camera transform
         cam.transform.localRotation = Quaternion.Euler(rotation, 0, 0);
 
         //rotate player to look left and right
-        transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
+        transform.Rotate(Vector3.up * mouseX * xSensitivity);
     }
     
     public void GravityPush()

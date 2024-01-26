@@ -22,7 +22,6 @@ public class PlayerInteract : MonoBehaviour
 
     private void Update()
     {
-        playerUI.UpdateText(string.Empty);
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, distance, mask))
@@ -31,11 +30,19 @@ public class PlayerInteract : MonoBehaviour
             {
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 playerUI.UpdateText(interactable.promptMessage);
+                
+                // Check if power up interactable
+                if (hit.collider.GetComponent<PowerUpInteractable>() != null) playerUI.UpdatePowerUpDescription(hit.collider.GetComponent<PowerUpInteractable>().description);
                 if (inputManager.playerActions.Interact.triggered)
                 {
                     interactable.BaseInteract();
                 }
             }
+        }
+        else
+        {
+            playerUI.UpdateText(string.Empty);
+            playerUI.UpdatePowerUpDescription(string.Empty);
         }
     }
 }

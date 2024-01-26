@@ -29,8 +29,8 @@ public class InputManager : MonoBehaviour
     {
         player.Move(playerActions.Move.ReadValue<Vector2>());
     }
-    
-    private void LateUpdate()
+
+    private void Update()
     {
         look.Look(playerActions.Look.ReadValue<Vector2>());
     }

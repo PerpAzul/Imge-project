@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
     private bool running;
+    private PlayerPowers _playerPowers;
 
     public float baseSpeed = 10f;
     public float speed;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Material playerMateria1;
     [SerializeField] private Material playerMateria2;
     public int playerIndex;
+    
     //music
     public AudioClip walkMusic;
     public AudioClip runMusic;
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
         controller = GetComponent<CharacterController>();
         AudioSource[] audioSources = GetComponents<AudioSource>();
         _audioSource = audioSources[0];
+        _playerPowers = gameObject.GetComponent<PlayerPowers>();
     }
     
     public void Init(int id)
@@ -93,7 +96,7 @@ public class Player : MonoBehaviour
 
     public void Dash()
     {
-        if (Time.time > nextDashTime)
+        if (_playerPowers.hasPower(PowerUpInteractable.Power.Dash) && Time.time > nextDashTime)
         {
             Vector3 move = orientation.forward * dashForce + orientation.up * dashUpwardForce;
             controller.Move(move);

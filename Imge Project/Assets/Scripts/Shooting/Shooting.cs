@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 using TMPro;
 using Random = UnityEngine.Random;
 
 public class Shooting : MonoBehaviour
 {
-    public float damage;
+    public int damage;
     public float timeBetweenShooting;
     public float spread;
     public float range;
@@ -16,12 +14,13 @@ public class Shooting : MonoBehaviour
     public float maxAmmo;
     public float ammo;
     public float reloadTime;
+    public int pointsPerHit;
     
     //UI
     [SerializeField] private TextMeshProUGUI ammoCount;
     [SerializeField] private GameObject hitmarkerUI;
     [SerializeField] private GameObject crosshairUI;
-
+    
     public Camera cam;
     
     private bool isReloading;
@@ -32,6 +31,9 @@ public class Shooting : MonoBehaviour
     public ParticleSystem flash;
 
     public Animator animator;
+
+    private PlayerPoints _playerPoints;
+    
     //Animation for hit something
     public GameObject hitEffectPrefab;
     //for music
@@ -47,6 +49,11 @@ public class Shooting : MonoBehaviour
         betweenShooting = false;
         hitmarkerUI.gameObject.SetActive(false);
         crosshairUI.gameObject.SetActive(true);
+        _playerPoints = FindObjectOfType<PlayerPoints>();
+        if (_playerPoints == null)
+        {
+            Debug.LogError("PlayerPoints component not found in the scene.");
+        }
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -75,6 +82,7 @@ public class Shooting : MonoBehaviour
                     hitActive();
                     Invoke("hitDisable", 0.5f);
                     target.TakeDamage(damage);
+                    _playerPoints.AddPoints(pointsPerHit);
                 }
                 
                 GameObject hitEffect = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
