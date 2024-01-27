@@ -38,6 +38,7 @@ public class Shooting : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip fire;
     public AudioClip reload;
+    public static float volume = 1.0f;
     private void Start()
     {
         ammo = maxReload;
@@ -60,6 +61,7 @@ public class Shooting : MonoBehaviour
             flash.Play();
             //fire music
             audioSource.clip = fire;
+            audioSource.volume = volume;
             audioSource.Play();
             float x = Random.Range(-spread, spread);
             float y = Random.Range(-spread, spread);
@@ -139,6 +141,7 @@ public class Shooting : MonoBehaviour
             StartCoroutine(Reloading());  
             //music for reloading
             audioSource.clip = reload;
+            audioSource.volume = volume;
             audioSource.Play();
         }
     }

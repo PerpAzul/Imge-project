@@ -16,16 +16,22 @@ public class UISetting : MonoBehaviour
     void Update()
     {
         SensitivityText.text = PlayerLook.sensitivityScale.ToString("0.##");
-        VolumeText.text = Player.volume.ToString("0.##");
+        VolumeText.text = (100 * Player.volume).ToString("###");
     }
     public void changeSensitivity(float value)
     {
         PlayerLook.sensitivityScale = value;
-        s.value = PlayerLook.sensitivityScale;
     }
     public void changeVolume(float value)
     {
         Player.volume = value;
+        PlayerHealth.volume = value;
+        Shooting.volume = value;
+    }
+    void OnEnable()
+    {
+        s.value = PlayerLook.sensitivityScale;
         s_v.value = Player.volume;
     }
+
 }

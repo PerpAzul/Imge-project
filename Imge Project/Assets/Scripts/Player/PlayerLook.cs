@@ -24,17 +24,17 @@ public class PlayerLook : MonoBehaviour
     
     public void Look(Vector2 input)
     {
-        float mouseX = input.x * Time.deltaTime;
-        float mouseY = input.y * Time.deltaTime;
+        float mouseX = input.x * Time.deltaTime * sensitivityScale;
+        float mouseY = input.y * Time.deltaTime * sensitivityScale;
 
         //calculate camera rotation for looking up and down
-        rotation -= mouseY * ySensitivity * sensitivityScale;
+        rotation -= mouseY * ySensitivity;
         rotation = Mathf.Clamp(rotation, -80f, 80f);
 
         //apply this to camera transform
         cam.transform.localRotation = Quaternion.Euler(rotation, 0, 0);
 
         //rotate player to look left and right
-        transform.Rotate(Vector3.up * (mouseX * xSensitivity * sensitivityScale));
+        transform.Rotate(Vector3.up * (mouseX * xSensitivity));
     }
 }

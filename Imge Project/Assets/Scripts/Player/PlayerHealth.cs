@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public float fadeSpeed;
     private float durationTimer;
     private AudioSource damagedMusic;
+    public static float volume = 1.0f;
     [SerializeField] private TextMeshProUGUI healthUI;
     
     void Start()
@@ -45,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth--;
         durationTimer = 0;
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1f);
+        damagedMusic.volume = volume;
         damagedMusic.Play();
     }
 }

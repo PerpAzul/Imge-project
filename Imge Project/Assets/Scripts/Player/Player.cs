@@ -64,6 +64,10 @@ public class Player : MonoBehaviour
                 dashImage.fillAmount = 1;
             }
         }
+        //_audioSource.volume    = volume;
+        //JumpMusicSource.volume = volume;
+        //DashMusicSource.volume = volume;
+        Debug.Log("volume: " + volume);
     }
 
     public void Move(Vector2 input)
@@ -84,6 +88,7 @@ public class Player : MonoBehaviour
         _audioSource.clip = running ? runMusic : walkMusic;
         if (input!=Vector2.zero&&isGrounded && !this._audioSource.isPlaying)
         {
+            _audioSource.volume = volume;
             _audioSource.Play();
         }
     }
@@ -93,6 +98,7 @@ public class Player : MonoBehaviour
         if (isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            JumpMusicSource.volume = volume;
             JumpMusicSource.Play();
         }
     }
@@ -105,6 +111,7 @@ public class Player : MonoBehaviour
             controller.Move(move);
             nextDashTime = Time.time + cooldownTime;
             dashImage.fillAmount = 0;
+            DashMusicSource.volume = volume;
             DashMusicSource.Play();
         }
     }
