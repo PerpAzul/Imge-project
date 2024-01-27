@@ -12,6 +12,7 @@ public class Shooting : MonoBehaviour
     public float range;
     public float maxReload;
     public float maxAmmo;
+    public float limitAmmo;
     public float ammo;
     public float reloadTime;
 
