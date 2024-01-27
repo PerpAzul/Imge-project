@@ -10,6 +10,7 @@ public class RoundManager : MonoBehaviour
     private int zombiesRemaining;
     private bool roundInProgress;
     private EnemySpawner _enemySpawner;
+    [SerializeField] private PlayerHealth health;
 
     [SerializeField] private TextMeshProUGUI roundUI;
     [SerializeField] private TextMeshProUGUI startRoundUI;
@@ -66,6 +67,7 @@ public class RoundManager : MonoBehaviour
     {
         roundInProgress = false;
         currentRound++;
+        health.currentHealth = health.maxHealth;
         _enemySpawner.increaseZombieHealth(5);
         StartCoroutine(StartRound(15f));
     }

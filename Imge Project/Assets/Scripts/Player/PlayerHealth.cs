@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     public float fadeSpeed;
     private float durationTimer;
     private AudioSource damagedMusic;
+    [SerializeField] private TextMeshProUGUI healthUI;
+    
     void Start()
     {
         currentHealth = maxHealth;
@@ -33,6 +36,8 @@ public class PlayerHealth : MonoBehaviour
                 overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
             }
         }
+
+        healthUI.text = "Health: " + currentHealth;
     }
 
     public void TakeDamage()
