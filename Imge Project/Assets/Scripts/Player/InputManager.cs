@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        look.Look(playerActions.Look.ReadValue<Vector2>());
+        if (Time.timeScale == 1) look.Look(playerActions.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable()

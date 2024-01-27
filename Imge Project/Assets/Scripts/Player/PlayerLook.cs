@@ -34,7 +34,7 @@ public class PlayerLook : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(rotation, 0, 0);
 
         //rotate player to look left and right
-        transform.Rotate(Vector3.up * mouseX * xSensitivity);
+        transform.Rotate(Vector3.up * (mouseX * xSensitivity));
     }
     
     public void GravityPush()

@@ -11,16 +11,21 @@ public class RoundManager : MonoBehaviour
     private bool roundInProgress;
     private EnemySpawner _enemySpawner;
 
-    [SerializeField] private TextMeshProUGUI zombiesRemainingUI;
+    [SerializeField] private TextMeshProUGUI roundUI;
     [SerializeField] private TextMeshProUGUI startRoundUI;
 
 
+    public void StartGame()
+    {
+        StartCoroutine(StartRound(5f));
+    }
+    
     void Start()
     {
         _enemySpawner = FindObjectOfType<EnemySpawner>().GetComponent<EnemySpawner>();
-        StartCoroutine(StartRound(5f));
         roundInProgress = false;
-        zombiesRemainingUI.enabled = false;
+        roundUI.enabled = false;
+        startRoundUI.enabled = false;
     }
 
     void Update()
@@ -34,6 +39,7 @@ public class RoundManager : MonoBehaviour
     private IEnumerator StartRound(float seconds)
     {
         roundInProgress = true;
+        startRoundUI.enabled = true;
         zombiesToSpawn = CalculateZombiesToSpawn(currentRound);
         zombiesRemaining = zombiesToSpawn;
         StartCoroutine(countdown(seconds));
@@ -43,17 +49,17 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator countdown(float secondsLeft)
     {
-        startRoundUI.text = "Round Starting In " + (secondsLeft).ToString("0");
+        startRoundUI.text = "Round " + currentRound +" Starting In " + (secondsLeft).ToString("0");
         startRoundUI.enabled = true;
         while (secondsLeft > 0)
         {
             yield return new WaitForSeconds(1);
             secondsLeft -= 1;
-            startRoundUI.text = "Round Starting In " + (secondsLeft).ToString("0");
+            startRoundUI.text = "Round " + currentRound +" Starting In " + (secondsLeft).ToString("0");
         }
         startRoundUI.enabled = false;
-        zombiesRemainingUI.enabled = true;
-        zombiesRemainingUI.text = "Zombies Remaining: " + zombiesRemaining;
+        roundUI.enabled = true;
+        roundUI.text = "Round: " + currentRound;
     }
 
     void EndRound()
@@ -72,7 +78,6 @@ public class RoundManager : MonoBehaviour
     public void ZombieKilled()
     {
         zombiesRemaining--;
-        zombiesRemainingUI.text = "Zombies remaining: " + zombiesRemaining;
     }
 
     private void SpawnZombies()
