@@ -8,16 +8,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerLook : MonoBehaviour
 {
+    public static float sensitivityScale = 1;
     public Camera cam;
     private float rotation;
 
-    public float xSensitivity = 30f;
-    public float ySensitivity = 30f;
+    public float xSensitivity = 30f;// * sensitivityScale;
+    public float ySensitivity = 30f;// * sensitivityScale;
     
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Debug.Log("Sensitivity: " + sensitivityScale);
     }
     
     public void Look(Vector2 input)
@@ -33,6 +35,6 @@ public class PlayerLook : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(rotation, 0, 0);
 
         //rotate player to look left and right
-        transform.Rotate(Vector3.up * (mouseX * xSensitivity));
+        transform.Rotate(Vector3.up * (mouseX * xSensitivity * sensitivityScale));
     }
 }
