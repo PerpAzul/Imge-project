@@ -5,7 +5,9 @@ using UnityEngine;
 public class WeaponSwitching : MonoBehaviour
 {
     public int selectedWeapon = 0;
-    
+    public bool hasMachineGun = false;
+    public bool hasShotgun = false;
+
     void Start()
     {
         SelectWeapon();
@@ -30,14 +32,44 @@ public class WeaponSwitching : MonoBehaviour
 
     public void Switch()
     {
-        if (selectedWeapon >= transform.childCount - 1)
+        if (hasMachineGun && hasShotgun)
         {
-            selectedWeapon = 0;
+            if (selectedWeapon >= transform.childCount - 1)
+            {
+                selectedWeapon = 0;
+            }
+            else
+            {
+                selectedWeapon++;
+            }
         }
         else
         {
-            selectedWeapon++;
+            if (hasMachineGun)
+            {
+                if (selectedWeapon >= 1)
+                {
+                    selectedWeapon = 0;
+                }
+                else
+                {
+                    selectedWeapon++;
+                }
+            }
+
+            if (hasShotgun)
+            {
+                if (selectedWeapon >= 1)
+                {
+                    selectedWeapon = 0;
+                }
+                else
+                {
+                    selectedWeapon = 2;
+                }
+            }
         }
+        
         SelectWeapon();
     }
 }
