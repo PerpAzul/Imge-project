@@ -64,7 +64,7 @@ public partial class @PlayerInput2 : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ForcePush"",
+                    ""name"": ""Invisibility"",
                     ""type"": ""Button"",
                     ""id"": ""ebcbaa0a-1817-4667-bf4d-1cc16f88ddc0"",
                     ""expectedControlType"": ""Button"",
@@ -231,7 +231,7 @@ public partial class @PlayerInput2 : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ForcePush"",
+                    ""action"": ""Invisibility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -242,7 +242,7 @@ public partial class @PlayerInput2 : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ForcePush"",
+                    ""action"": ""Invisibility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -301,7 +301,7 @@ public partial class @PlayerInput2 : IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash ", throwIfNotFound: true);
-        m_Player_ForcePush = m_Player.FindAction("ForcePush", throwIfNotFound: true);
+        m_Player_Invisibility = m_Player.FindAction("Invisibility", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
     }
@@ -367,7 +367,7 @@ public partial class @PlayerInput2 : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_ForcePush;
+    private readonly InputAction m_Player_Invisibility;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Run;
     public struct PlayerActions
@@ -378,7 +378,7 @@ public partial class @PlayerInput2 : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @ForcePush => m_Wrapper.m_Player_ForcePush;
+        public InputAction @Invisibility => m_Wrapper.m_Player_Invisibility;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -402,9 +402,9 @@ public partial class @PlayerInput2 : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @ForcePush.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnForcePush;
-                @ForcePush.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnForcePush;
-                @ForcePush.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnForcePush;
+                @Invisibility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInvisibility;
+                @Invisibility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInvisibility;
+                @Invisibility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInvisibility;
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
@@ -427,9 +427,9 @@ public partial class @PlayerInput2 : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
-                @ForcePush.started += instance.OnForcePush;
-                @ForcePush.performed += instance.OnForcePush;
-                @ForcePush.canceled += instance.OnForcePush;
+                @Invisibility.started += instance.OnInvisibility;
+                @Invisibility.performed += instance.OnInvisibility;
+                @Invisibility.canceled += instance.OnInvisibility;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -446,7 +446,7 @@ public partial class @PlayerInput2 : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnForcePush(InputAction.CallbackContext context);
+        void OnInvisibility(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
     }

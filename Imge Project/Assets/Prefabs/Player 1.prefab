@@ -304,7 +304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &571045233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11142,7 +11142,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1011230869248325691}
   - component: {fileID: 1011230869248325689}
-  - component: {fileID: 1011230869248325690}
   m_Layer: 0
   m_Name: FPSCamera
   m_TagString: Untagged
@@ -11209,14 +11208,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1011230869248325690
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011230869248325692}
-  m_Enabled: 1
 --- !u!1 &1011230869437263130
 GameObject:
   m_ObjectHideFlags: 0
@@ -11371,8 +11362,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1011230869248325689}
-  xSensitivity: 200
-  ySensitivity: 200
+  xSensitivity: 500
+  ySensitivity: 500
 --- !u!114 &1400161657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11529,6 +11520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657fb20494e4ac6478d336d2b178f35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vendingMachine: {fileID: 0}
 --- !u!1 &1571180719252475182
 GameObject:
   m_ObjectHideFlags: 0
@@ -12590,7 +12582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbebc95794aadae4498c5d1cf32abe40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 15
   timeBetweenShooting: 0.05
   spread: 0
   range: 100
@@ -12608,8 +12600,8 @@ MonoBehaviour:
   flash: {fileID: 2044372115}
   animator: {fileID: 1503916201}
   hitEffectPrefab: {fileID: 0}
-  fire: {fileID: 0}
-  reload: {fileID: 0}
+  fire: {fileID: 8300000, guid: 4765bf77b2e2b3048b85003737c43140, type: 3}
+  reload: {fileID: 8300000, guid: e729558f0fd8d2f4b97d4c9cbb4e1fb9, type: 3}
 --- !u!4 &617038373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06, type: 3}

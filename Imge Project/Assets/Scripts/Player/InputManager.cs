@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     
     private Player player;
     private PlayerLook look;
+    private PlayerPowers _powers;
 
     void Awake()
     {
@@ -17,12 +18,13 @@ public class InputManager : MonoBehaviour
 
         player = GetComponent<Player>();
         look = GetComponent<PlayerLook>();
+        _powers = GetComponent<PlayerPowers>();
 
         playerActions.Jump.performed += ctx => player.Jump();
         playerActions.Run.started += ctx => player.StartRun();
         playerActions.Run.canceled += ctx => player.EndRun();
         playerActions.Dash.performed += ctx => player.Dash();
-        playerActions.ForcePush.performed += ctx => look.GravityPush();
+        playerActions.Invisibility.performed += ctx => StartCoroutine(_powers.becomeInvisible());
     }
 
     private void FixedUpdate()
@@ -32,7 +34,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 1) look.Look(playerActions.Look.ReadValue<Vector2>());
+        if ((int) Time.timeScale == 1) look.Look(playerActions.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable()

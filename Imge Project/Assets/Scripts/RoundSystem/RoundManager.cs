@@ -66,13 +66,15 @@ public class RoundManager : MonoBehaviour
     {
         roundInProgress = false;
         currentRound++;
+        _enemySpawner.increaseZombieHealth(5);
         StartCoroutine(StartRound(15f));
     }
 
     int CalculateZombiesToSpawn(int round)
     {
-        // An exponential growth: 10 * (round ^ 1.5)
-        return Mathf.CeilToInt(10 * Mathf.Pow(round, 1.5f));
+        // An exponential growth: 2 * (round ^ 1.5)
+        if (round > 10) return 64;
+        return Mathf.CeilToInt(2 * Mathf.Pow(round, 1.5f));
     }
 
     public void ZombieKilled()

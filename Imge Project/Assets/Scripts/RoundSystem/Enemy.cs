@@ -6,13 +6,15 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 60;
+    public int health = 30;
     private float attackTimer;
     private GameObject player;
     private NavMeshAgent agent;
     public Animator zombieAnimator;
     private PlayerPoints _playerPoints;
     private RoundManager _roundManager;
+    public bool playerInvisible;
+    
 
     private void Start()
     {
@@ -20,23 +22,32 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         _playerPoints = FindObjectOfType<PlayerPoints>();
         _roundManager = FindObjectOfType<RoundManager>();
+        playerInvisible = false;
+        health = 30;
     }
 
     private void Update()
     {
-        agent.SetDestination(player.transform.position);
-        float targetDistance = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position));
-        
-        if (targetDistance < 3f)
+        if (!playerInvisible)
         {
-            attackTimer += Time.deltaTime;
-            if (attackTimer > 1f)
+            agent.SetDestination(player.transform.position);
+            float targetDistance = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position));
+        
+            if (targetDistance < 3f)
             {
-                zombieAnimator.SetBool("isAttacking", true);
-                Attack();
-                zombieAnimator.SetBool("isAttacking", false);
-                attackTimer = 0;   
+                attackTimer += Time.deltaTime;
+                if (attackTimer > 1f)
+                {
+                    zombieAnimator.SetBool("isAttacking", true);
+                    Attack();
+                    zombieAnimator.SetBool("isAttacking", false);
+                    attackTimer = 0;   
+                }
             }
+        }
+        else
+        {
+            agent.SetDestination(gameObject.transform.position);
         }
     }
 
@@ -62,4 +73,5 @@ public class Enemy : MonoBehaviour
     {
         player.GetComponent<PlayerHealth>().TakeDamage();
     }
+    
 }

@@ -41,4 +41,9 @@ public class EnemySpawner : MonoBehaviour
         }
         return false;
     }
+
+    public void increaseZombieHealth(int healthToIncrease)
+    {
+        zombiePrefab.GetComponent<Enemy>().health += healthToIncrease;
+    } 
 }

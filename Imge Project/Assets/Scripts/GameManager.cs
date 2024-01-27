@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
         playerList.Add(playerInput);
         int currentId = playerList.Count - 1;
         Player player = playerList[currentId].GetComponent<Player>();
-        player.Init(currentId);
     }
 
     void OnPlayerLeft(PlayerInput playerInput)

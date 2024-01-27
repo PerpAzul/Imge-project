@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f56763427dc1c34fb173c895d79977f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 60
+  health: 40
   zombieAnimator: {fileID: 4972802055694576266}
 --- !u!195 &5793191862137868628
 NavMeshAgent:
@@ -527,11 +527,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

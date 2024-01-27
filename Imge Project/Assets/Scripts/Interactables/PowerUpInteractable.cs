@@ -37,12 +37,12 @@ public class PowerUpInteractable : Interactable
             case Power.MoreHealth:
                 powerName = "Titan's Vitality";
                 description =
-                    "Description: Tap into the ancient strength of titans, fortifying your health by to withstand the relentless onslaught.\n(Health increases by 30%)";
+                    "Description: Tap into the ancient strength of titans, fortifying your health by to withstand the relentless onslaught.\n(Health increases by 60%)";
                 break;
             case Power.MoreDamage:
                 powerName = "Fury's Edge";
                 description =
-                    "Description: Channel the wrath of a warrior, enhancing your weapons to deal devastating damage.\n(Damage increases by 20%)";
+                    "Description: Channel the wrath of a warrior, enhancing the weapon in your hand to deal devastating damage.\n(Damage increases by 50%)";
                 break;
         }
         promptMessage = "Buy " + powerName + " [Cost: " + price + "]";
@@ -63,5 +63,7 @@ public class PowerUpInteractable : Interactable
             playerPoints.DecreasePoints(price);
             _playerPowers.addPower(_power);
         }
+
+        gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 }

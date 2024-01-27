@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -23,12 +25,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float cooldownTime = 2;
     private float nextDashTime = 0;
     
-    //Init
-    [Header("Init Settings")]
-    [SerializeField] private Material playerMateria1;
-    [SerializeField] private Material playerMateria2;
-    public int playerIndex;
-    
+    //Dash UI
+    public Image dashImage;
+    private float timer;
+
     //music
     public AudioClip walkMusic;
     public AudioClip runMusic;
@@ -42,25 +42,28 @@ public class Player : MonoBehaviour
         AudioSource[] audioSources = GetComponents<AudioSource>();
         _audioSource = audioSources[0];
         _playerPowers = gameObject.GetComponent<PlayerPowers>();
-    }
-    
-    public void Init(int id)
-    {
-        Debug.Log("index " + playerIndex);
-        if (id == 0)
-        {
-            playerIndex = 0;
-        }
-        else
-        {
-            playerIndex = 1;
-        }
-        GetComponent<Renderer>().material = id == 0 ? playerMateria1 : playerMateria2;
+        dashImage.enabled = false;
     }
 
     void Update()
     {
         isGrounded = controller.isGrounded;
+        // Is in cooldown
+        if (dashImage.enabled)
+        {
+            if (Time.time <= nextDashTime)
+            {
+                dashImage.fillAmount += 1 / cooldownTime * Time.deltaTime;
+                if (dashImage.fillAmount >= 1)
+                {
+                    dashImage.fillAmount = 1;
+                }
+            }
+            else
+            {
+                dashImage.fillAmount = 1;
+            }
+        }
     }
 
     public void Move(Vector2 input)
@@ -68,7 +71,7 @@ public class Player : MonoBehaviour
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+        controller.Move(transform.TransformDirection(moveDirection) * (speed * Time.deltaTime));
 
         playerVelocity.y += gravity * Time.deltaTime;
         
@@ -101,6 +104,7 @@ public class Player : MonoBehaviour
             Vector3 move = orientation.forward * dashForce + orientation.up * dashUpwardForce;
             controller.Move(move);
             nextDashTime = Time.time + cooldownTime;
+            dashImage.fillAmount = 0;
             DashMusicSource.Play();
         }
     }

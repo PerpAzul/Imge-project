@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerInput2",
     "maps": [
         {
             "name": "Player",
@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ForcePush",
+                    "name": "Invisibility",
                     "type": "Button",
                     "id": "ebcbaa0a-1817-4667-bf4d-1cc16f88ddc0",
                     "expectedControlType": "Button",
@@ -209,7 +209,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ForcePush",
+                    "action": "Invisibility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -220,7 +220,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ForcePush",
+                    "action": "Invisibility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

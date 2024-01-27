@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public float currentHealth;
-    public int maxHealth = 3;
+    public int maxHealth = 5;
 
     public Image overlay;
     public float duration;
