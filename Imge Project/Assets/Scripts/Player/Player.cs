@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
     
     //Dash UI
     public Image dashImage;
-    private float timer;
 
     //music
     public AudioClip walkMusic;
