@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private bool running;
     private PlayerPowers _playerPowers;
-    public static float volume; //TODO: set volume of Sounds before Sounds.Play() (in Update)
+    public static float volume = 1.0f; //TODO: set volume of Sounds before Sounds.Play() (in Update)
 
     public float baseSpeed = 10f;
     public float speed;

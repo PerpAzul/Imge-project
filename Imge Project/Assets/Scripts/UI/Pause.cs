@@ -18,15 +18,18 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        if (!GamingOptions.gamingOptionIsOpen)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            Panel.SetActive(true);
-            PauseGame();
-        }else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
-        {
-            ContinueGame();
+            if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                Panel.SetActive(true);
+                PauseGame();
+            }else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+            {
+                ContinueGame();
+            }
         }
     }
     

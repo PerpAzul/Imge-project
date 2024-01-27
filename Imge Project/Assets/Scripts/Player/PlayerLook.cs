@@ -28,7 +28,7 @@ public class PlayerLook : MonoBehaviour
         float mouseY = input.y * Time.deltaTime;
 
         //calculate camera rotation for looking up and down
-        rotation -= mouseY * ySensitivity;
+        rotation -= mouseY * ySensitivity * sensitivityScale;
         rotation = Mathf.Clamp(rotation, -80f, 80f);
 
         //apply this to camera transform
