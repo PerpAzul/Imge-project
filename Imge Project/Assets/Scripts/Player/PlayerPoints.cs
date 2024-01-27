@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerPoints : MonoBehaviour
 {
-    private int currentPoints = 30000;
+    public int currentPoints = 30000;
     [SerializeField] private TextMeshProUGUI pointsUI;
 
     void Start()
