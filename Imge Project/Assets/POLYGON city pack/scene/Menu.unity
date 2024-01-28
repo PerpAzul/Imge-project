@@ -4839,7 +4839,7 @@ MonoBehaviour:
   VolumeText: {fileID: 902915197}
   s: {fileID: 1342054153}
   s_v: {fileID: 1945903132}
-  fs_t: {fileID: 0}
+  fs_t: {fileID: 726992810}
 --- !u!1 &2075525458
 GameObject:
   m_ObjectHideFlags: 0
