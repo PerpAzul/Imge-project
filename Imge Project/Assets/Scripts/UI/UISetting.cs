@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,7 +13,13 @@ public class UISetting : MonoBehaviour
 
     public Slider s;
     public Slider s_v;
+    public Toggle fs_t;
     // Update is called once per frame
+    private void Awake()
+    {
+        fs_t.isOn = Screen.fullScreen;
+    }
+
     void Update()
     {
         SensitivityText.text = PlayerLook.sensitivityScale.ToString("0.##");
@@ -27,11 +34,19 @@ public class UISetting : MonoBehaviour
         Player.volume = value;
         PlayerHealth.volume = value;
         Shooting.volume = value;
+        Enemy.volume = value;
+        PlayerInteract.volume = value;
     }
+    public void KlickFSToggle()
+    {
+        Screen.fullScreen = fs_t.isOn;
+    }
+
     void OnEnable()
     {
         s.value = PlayerLook.sensitivityScale;
         s_v.value = Player.volume;
+        fs_t.isOn = Screen.fullScreen;
     }
 
 }

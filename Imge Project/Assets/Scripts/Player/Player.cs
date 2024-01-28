@@ -30,17 +30,14 @@ public class Player : MonoBehaviour
     public Image dashImage;
 
     //music
-    public AudioClip walkMusic;
-    public AudioClip runMusic;
     public AudioSource JumpMusicSource;
     public AudioSource DashMusicSource;
-    private AudioSource _audioSource;
+    private AudioSource Run_audioSource;
     
     void Start()
     {
         controller = GetComponent<CharacterController>();
         AudioSource[] audioSources = GetComponents<AudioSource>();
-        _audioSource = audioSources[0];
         _playerPowers = gameObject.GetComponent<PlayerPowers>();
         dashImage.enabled = false;
     }
@@ -83,12 +80,11 @@ public class Player : MonoBehaviour
             playerVelocity.y = -2f;
         }
         controller.Move(playerVelocity * Time.deltaTime);
-
-        _audioSource.clip = running ? runMusic : walkMusic;
-        if (input!=Vector2.zero&&isGrounded && !this._audioSource.isPlaying)
+        
+        if (running && input!=Vector2.zero&&isGrounded && !Run_audioSource.isPlaying)
         {
-            _audioSource.volume = volume;
-            _audioSource.Play();
+            Run_audioSource.volume = volume;
+            Run_audioSource.Play();
         }
     }
 

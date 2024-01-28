@@ -54,8 +54,9 @@ public class Shooting : MonoBehaviour
 
     private void Update()
     {
+        if (!Pause.isPaused){
         ammoCount.text = ammo + "/" + maxAmmo;
-        
+
         if (ammo > 0 && isShooting == true)
         {
             ammo--;
@@ -67,7 +68,7 @@ public class Shooting : MonoBehaviour
             float x = Random.Range(-spread, spread);
             float y = Random.Range(-spread, spread);
             Vector3 direction = cam.transform.forward + new Vector3(x, y, 0);
-            
+
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, direction, out hit, range))
             {
@@ -79,12 +80,13 @@ public class Shooting : MonoBehaviour
                     Invoke("hitDisable", 0.5f);
                     target.TakeDamage(damage);
                 }
-                
+
                 GameObject hitEffect = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(hitEffect, 0.5f);
             }
-            
+
             ResetShoot();
+        }
         }
     }
 
@@ -130,7 +132,12 @@ public class Shooting : MonoBehaviour
             ammo += maxAmmo;
             maxAmmo = 0;
         }
-
+        
+        //music for reloading
+        audioSource.clip = reload;
+        audioSource.volume = volume;
+        audioSource.Play();
+        
         ammoCount.text =  ammo + "/10";
         isReloading = false;
     }
@@ -140,10 +147,6 @@ public class Shooting : MonoBehaviour
         if (isReloading == false && maxAmmo > 0 && ammo < maxReload)
         {
             StartCoroutine(Reloading());  
-            //music for reloading
-            audioSource.clip = reload;
-            audioSource.volume = volume;
-            audioSource.Play();
         }
     }
 

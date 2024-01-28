@@ -12,7 +12,10 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private LayerMask mask;
     private PlayerUI playerUI;
     private InputManager inputManager;
-
+    //for the music
+    public static float volume = 1.0f;
+    public AudioSource drink_audio;
+    //[SerializeField] private Transform playerPosition;
     private void Start()
     {
         cam = GetComponent<PlayerLook>().cam;
@@ -36,6 +39,14 @@ public class PlayerInteract : MonoBehaviour
                 if (inputManager.playerActions.Interact.triggered)
                 {
                     interactable.BaseInteract();
+                    //Debug.Log((interactable.transform.position-playerPosition.position).sqrMagnitude);
+                    Debug.Log(interactable.tag);
+                    if (interactable.CompareTag("vendingMachines") 
+                        /*&&(interactable.transform.position-playerPosition.position).sqrMagnitude < 4.0f*/)
+                    {
+                        drink_audio.volume = volume;
+                        drink_audio.Play();
+                    }
                 }
             }
         }

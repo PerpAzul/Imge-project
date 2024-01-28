@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - SupermarketSpawnPoint
   - CitySpawnPoint
+  - vendingMachines
   layers:
   - Default
   - TransparentFX

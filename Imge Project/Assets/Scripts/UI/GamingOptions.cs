@@ -15,11 +15,13 @@ public class GamingOptions : MonoBehaviour
     private Slider sensitivitySlider;
     [SerializeField]
     private Slider volumeSlider;
-
+    [SerializeField] 
+    private Toggle fullScreenToggle;
     public static bool gamingOptionIsOpen = false;
     // Start is called before the first frame update
     void Start()
     {
+        fullScreenToggle.isOn = Screen.fullScreen;
         Options.SetActive(false);
     }
     public void LoadOptions()
@@ -35,8 +37,9 @@ public class GamingOptions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SensitivityText.text = PlayerLook.sensitivityScale.ToString("0.##");
-        VolumeText.text = Player.volume.ToString("0.##");
+        int temp = (int)(30.0f * PlayerLook.sensitivityScale);
+        SensitivityText.text = temp.ToString();
+        VolumeText.text = (100 * Player.volume).ToString("###");
         if (Input.GetKeyDown(KeyCode.Escape) && gamingOptionIsOpen)
         {
             CloseOptions();
@@ -45,11 +48,25 @@ public class GamingOptions : MonoBehaviour
     public void changeS(float value)
     {
         PlayerLook.sensitivityScale = value;
-        sensitivitySlider.value = PlayerLook.sensitivityScale;
     }
     public void changeV(float value)
     {
         Player.volume = value;
-        volumeSlider.value = Player.volume;
+        PlayerHealth.volume = value;
+        Shooting.volume = value;
+        Enemy.volume = value;
+        PlayerInteract.volume = value;
     }
+    public void KlickFSToggle()
+    {
+        Screen.fullScreen = fullScreenToggle.isOn;
+    }
+
+    void OnEnable()
+    {
+        sensitivitySlider.value = PlayerLook.sensitivityScale;
+        volumeSlider.value = Player.volume;
+        fullScreenToggle.isOn = Screen.fullScreen;
+    }
+
 }

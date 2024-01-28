@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Pause : MonoBehaviour
 {
-    private bool isPaused = false;
+    public static bool isPaused = false;
     // Update is called once per frame
     [SerializeField]
     private GameObject Panel;
@@ -17,8 +17,6 @@ public class Pause : MonoBehaviour
     
     // Papers Edgecase
     [SerializeField] private GameObject papers;
-    
-    
     
     
     private void Awake()
@@ -72,9 +70,10 @@ public class Pause : MonoBehaviour
         {
             PauseGame();
         }
-        else
+        else if (!GamingOptions.gamingOptionIsOpen)
         {
             ContinueGame();
         }
     }
+
 }

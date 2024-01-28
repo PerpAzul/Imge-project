@@ -14,8 +14,11 @@ public class Enemy : MonoBehaviour
     private PlayerPoints _playerPoints;
     private RoundManager _roundManager;
     public bool playerInvisible;
-    
-
+    //for the audios
+    public AudioSource attck_audio;
+    public AudioSource roar_audio;
+    private float roarTimer;
+    public static float volume = 1.0f;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -44,10 +47,28 @@ public class Enemy : MonoBehaviour
                     attackTimer = 0;   
                 }
             }
+            //when zombie is near the player the roar_audio will be played
+            if (targetDistance < 10f && !roar_audio.isPlaying)
+            {
+                roar_audio.volume = volume;
+                roar_audio.Play();
+                if (roarTimer>30f && !roar_audio.isPlaying)
+                {
+                    roar_audio.Play();
+                }
+            }
         }
         else
         {
             agent.SetDestination(gameObject.transform.position);
+        }
+        //each 15s the zombie will roar
+        roarTimer += Time.deltaTime;
+        if (roarTimer>150f && !roar_audio.isPlaying)
+        {
+            roar_audio.volume = volume/2;
+            roar_audio.Play();
+            roarTimer = 0;
         }
     }
 
@@ -72,6 +93,11 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         player.GetComponent<PlayerHealth>().TakeDamage();
+        attck_audio.volume = volume;
+        if (!attck_audio.isPlaying)
+        {
+            attck_audio.Play();
+        }
     }
     
 }
