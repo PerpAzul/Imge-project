@@ -15,6 +15,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI roundUI;
     [SerializeField] private TextMeshProUGUI startRoundUI;
 
+    private bool spawnInMarket = true;
+
 
     public void StartGame()
     {
@@ -86,6 +88,19 @@ public class RoundManager : MonoBehaviour
 
     private void SpawnZombies()
     {
-        StartCoroutine(_enemySpawner.SpawnZombiesInSupermarket(zombiesToSpawn));
+        if (spawnInMarket)
+        {
+            StartCoroutine(_enemySpawner.SpawnZombiesInSupermarket(zombiesToSpawn));
+        }
+        else
+        {
+            StartCoroutine(_enemySpawner.SpawnZombiesInCity(zombiesToSpawn));
+        }
+        
+    }
+
+    public void changeSpawn()
+    {
+        spawnInMarket = false;
     }
 }

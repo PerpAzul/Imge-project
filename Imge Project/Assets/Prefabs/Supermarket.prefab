@@ -66503,6 +66503,7 @@ MonoBehaviour:
   promptMessage: 'Open Door [Cost: 1500]'
   price: 1500
   animator: {fileID: 3653721931896365064}
+  supermarketDoor: 1
 --- !u!1 &5759312888103810913
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
         //_audioSource.volume    = volume;
         //JumpMusicSource.volume = volume;
         //DashMusicSource.volume = volume;
-        Debug.Log("volume: " + volume);
     }
 
     public void Move(Vector2 input)

@@ -11,40 +11,70 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     [SerializeField]
     private GameObject Panel;
+
+    private PlayerInput2 _playerInput2;
+    private PlayerInput2.PauseMenuActions playerActions;
+    
+    // Papers Edgecase
+    [SerializeField] private GameObject papers;
+    
+    
+    
+    
     private void Awake()
     {
         Panel.SetActive(false);
+        _playerInput2 = new PlayerInput2();
+        playerActions = _playerInput2.PauseMenu;
+        playerActions.OpenMenu.performed += _ => DeterminePause();
     }
 
-    void Update()
-    {
-        if (!GamingOptions.gamingOptionIsOpen)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
-                Panel.SetActive(true);
-                PauseGame();
-            }else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
-            {
-                ContinueGame();
-            }
-        }
-    }
-    
     private void PauseGame()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         isPaused = true;
-        Time.timeScale = 0f;
+        Panel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    private void OnEnable()
+    {
+        playerActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerActions.Disable();
     }
 
     public void ContinueGame()
     {
+        if (papers.gameObject.activeSelf)
+        {
+            isPaused = false;
+            Panel.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            return;
+        }
+
         isPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Panel.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    public void DeterminePause()
+    {
+        if (!isPaused)
+        {
+            PauseGame();
+        }
+        else
+        {
+            ContinueGame();
+        }
     }
 }

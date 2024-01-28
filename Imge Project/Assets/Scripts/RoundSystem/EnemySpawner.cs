@@ -5,16 +5,19 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject zombiePrefab;
     private GameObject[] supermarketSpawnPoints;
+    private GameObject[] citySpawnPoints;
     private Transform playerTransform;
     private void Start()
     {
         playerTransform = FindObjectOfType<Player>().gameObject.transform;
         supermarketSpawnPoints = GameObject.FindGameObjectsWithTag("SupermarketSpawnPoint");
+        citySpawnPoints = GameObject.FindGameObjectsWithTag("CitySpawnPoint");
+        Debug.Log("Length city spawn points: " + citySpawnPoints.Length);
     }
 
     public IEnumerator SpawnZombiesInSupermarket(int numberOfEnemies)
     {
-        Debug.Log("Started spawning Zombies");
+        Debug.Log("Started spawning Zombies in Supermarket");
         while (numberOfEnemies > 0)
         {
             numberOfEnemies -= 1;
@@ -25,6 +28,24 @@ public class EnemySpawner : MonoBehaviour
                 spawnPointIndex = Random.Range(0, supermarketSpawnPoints.Length);
             }
             Instantiate(zombiePrefab, supermarketSpawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
+            Debug.Log("Zombie Spawned");
+            yield return new WaitForSeconds(3);
+        }
+    }
+    
+    public IEnumerator SpawnZombiesInCity(int numberOfEnemies)
+    {
+        Debug.Log("Started spawning Zombies in City");
+        while (numberOfEnemies > 0)
+        {
+            numberOfEnemies -= 1;
+            int spawnPointIndex = Random.Range(0, citySpawnPoints.Length);
+            while (isSpawnPointInSight(citySpawnPoints[spawnPointIndex]))
+            {
+                Debug.Log("Zombie in sight");
+                spawnPointIndex = Random.Range(0, citySpawnPoints.Length);
+            }
+            Instantiate(zombiePrefab, citySpawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
             Debug.Log("Zombie Spawned");
             yield return new WaitForSeconds(3);
         }
