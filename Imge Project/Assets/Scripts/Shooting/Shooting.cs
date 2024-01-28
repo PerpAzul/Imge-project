@@ -62,6 +62,7 @@ public class Shooting : MonoBehaviour
             ammo--;
             flash.Play();
             //fire music
+            //StartCoroutine(ShootingCoroutine());
             audioSource.clip = fire;
             audioSource.volume = volume;
             audioSource.Play();
@@ -182,4 +183,11 @@ public class Shooting : MonoBehaviour
         crosshairUI.gameObject.SetActive(true);
         hitmarkerUI.gameObject.SetActive(false);
     }
+    /*IEnumerator ShootingCoroutine()
+    {
+        audioSource.clip = fire;
+        audioSource.volume = volume;
+        audioSource.Play();
+        yield return null;
+    }*/
 }

@@ -3151,7 +3151,7 @@ GameObject:
   - component: {fileID: 1120791458}
   - component: {fileID: 1120791457}
   m_Layer: 5
-  m_Name: Resolution Change Button
+  m_Name: Resolution Change Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

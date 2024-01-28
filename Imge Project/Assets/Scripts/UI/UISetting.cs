@@ -18,7 +18,7 @@ public class UISetting : MonoBehaviour
         public int width;
         public int height;
     }
-    private res[] Resolutions = new res[3];
+    private res[] Resolutions = new res[5];
     private int selectedResolution = 1;
     // Update is called once per frame
     private void Awake()
@@ -29,7 +29,11 @@ public class UISetting : MonoBehaviour
         Resolutions[1].width    = 1920;
         Resolutions[1].height   = 1080;
         Resolutions[2].width    = 2560;
-        Resolutions[2].height   = 1440; 
+        Resolutions[2].height   = 1440;
+        Resolutions[3].width    = 3840;
+        Resolutions[3].height   = 2160;
+        Resolutions[4].width    = 4096;
+        Resolutions[4].height   = 2160;
     }
 
     void Update()
