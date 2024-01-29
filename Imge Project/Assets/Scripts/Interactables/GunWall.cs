@@ -17,6 +17,7 @@ public class GunWall : Interactable
         if (index == 1 && wSwitch.hasMachineGun)
         {
             promptMessage = "Buy Assault Rifle Ammo [Cost: 750]";
+            index = 0;
         }
     }
 

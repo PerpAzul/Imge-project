@@ -10,6 +10,7 @@ public class RoundManager : MonoBehaviour
     private int zombiesRemaining;
     private bool roundInProgress;
     private EnemySpawner _enemySpawner;
+    [SerializeField] private Enemy zombie;
     [SerializeField] private PlayerHealth health;
 
     [SerializeField] private TextMeshProUGUI roundUI;
@@ -29,6 +30,7 @@ public class RoundManager : MonoBehaviour
         roundInProgress = false;
         roundUI.enabled = false;
         startRoundUI.enabled = false;
+        zombie.health = 30;
     }
 
     void Update()

@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public AudioSource roar_audio;
     private float roarTimer;
     public static float volume = 1.0f;
+    
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,7 +27,6 @@ public class Enemy : MonoBehaviour
         _playerPoints = FindObjectOfType<PlayerPoints>();
         _roundManager = FindObjectOfType<RoundManager>();
         playerInvisible = false;
-        health = 30;
     }
 
     private void Update()
