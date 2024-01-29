@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+//using static UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
@@ -32,7 +33,10 @@ public class Player : MonoBehaviour
     //music
     public AudioSource JumpMusicSource;
     public AudioSource DashMusicSource;
+    [SerializeField]
     private AudioSource Run_audioSource;
+
+    public AudioSource ZombieRoarSource;
     
     void Start()
     {
@@ -83,8 +87,12 @@ public class Player : MonoBehaviour
         
         if (running && input!=Vector2.zero&&isGrounded && !Run_audioSource.isPlaying)
         {
-            Run_audioSource.volume = volume;
+            Run_audioSource.volume = volume * 0.3f;
             Run_audioSource.Play();
+        }
+        if(!running)
+        {
+            Run_audioSource.Stop();
         }
     }
 
@@ -121,5 +129,18 @@ public class Player : MonoBehaviour
     {
         speed = baseSpeed;
         running = false;
+    }
+    IEnumerator ZombieSounds()
+    {
+        yield return new WaitForSeconds(15.0f);
+        while(true)
+        {
+            if (!ZombieRoarSource.isPlaying)
+            {
+                ZombieRoarSource.volume = volume / UnityEngine.Random.Range(0.8f, 2.0f);
+                ZombieRoarSource.Play();
+            }
+            yield return new WaitForSeconds(UnityEngine.Random.Range(20.0f, 60.0f));
+        }
     }
 }

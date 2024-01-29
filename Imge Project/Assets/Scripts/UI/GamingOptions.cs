@@ -20,6 +20,10 @@ public class GamingOptions : MonoBehaviour
     private Toggle fullScreenToggle;
     public static bool gamingOptionIsOpen = false;
     
+    [SerializeField]
+    private GameObject HelpPanel; //HelpButton
+    private static bool helpIsOpen = false;
+    
     private struct res {
         public int width;
         public int height;
@@ -31,6 +35,7 @@ public class GamingOptions : MonoBehaviour
     {
         fullScreenToggle.isOn = Screen.fullScreen;
         Options.SetActive(false);
+        HelpPanel.SetActive(false);
         Resolutions[0].width    = 1280;
         Resolutions[0].height   =  720;
         Resolutions[1].width    = 1920;
@@ -61,6 +66,10 @@ public class GamingOptions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && gamingOptionIsOpen)
         {
             CloseOptions();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && helpIsOpen)
+        {
+            CloseHelp();
         }
     }
     public void changeS(float value)
@@ -119,6 +128,17 @@ public void resolutionLeft()
         sensitivitySlider.value = PlayerLook.sensitivityScale;
         volumeSlider.value = Player.volume;
         fullScreenToggle.isOn = Screen.fullScreen;
+    }
+    public void LoadHelp()
+    {
+        HelpPanel.SetActive(true); //HelpButton
+        helpIsOpen = true;
+    }
+
+    public void CloseHelp()
+    {
+        HelpPanel.SetActive(false); //HelpButton
+        helpIsOpen = false;
     }
 
 }

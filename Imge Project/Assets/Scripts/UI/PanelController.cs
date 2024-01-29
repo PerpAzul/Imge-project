@@ -24,9 +24,12 @@ public class PanelController : MonoBehaviour
     {
         //user can click esc to close the windows
         if (Input.GetKeyDown(KeyCode.Escape) && helpIsOpen)
-        {
-            Close();
-        }else if (Input.GetKeyDown(KeyCode.Escape) && OptionIsOpen)
+        {   
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+            CloseHelp();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && OptionIsOpen)
         {
             CloseOptions();
         }
@@ -38,7 +41,7 @@ public class PanelController : MonoBehaviour
         helpIsOpen = true;
     }
 
-    public  void Close()
+    public  void CloseHelp()
     {
         Panel.SetActive(false); //HelpButton
         helpIsOpen = false;

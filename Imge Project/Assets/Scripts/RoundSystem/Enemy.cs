@@ -63,13 +63,13 @@ public class Enemy : MonoBehaviour
             agent.SetDestination(gameObject.transform.position);
         }
         //each 15s the zombie will roar
-        roarTimer += Time.deltaTime;
+        /*roarTimer += Time.deltaTime;
         if (roarTimer>150f && !roar_audio.isPlaying)
         {
             roar_audio.volume = volume/2;
             roar_audio.Play();
             roarTimer = 0;
-        }
+        }*/
     }
 
     public void TakeDamage(int amount)
