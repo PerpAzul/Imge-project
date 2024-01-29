@@ -16,6 +16,13 @@ public class PlayerHealth : MonoBehaviour
     private AudioSource damagedMusic;
     public static float volume = 1.0f;
     [SerializeField] private TextMeshProUGUI healthUI;
+    [SerializeField] private GameObject endUI;
+    
+    [SerializeField] private Player player;
+    [SerializeField] private RoundManager roundManager;
+    [SerializeField] private TextMeshProUGUI escape;
+    [SerializeField] private TextMeshProUGUI killCount;
+    [SerializeField] private TextMeshProUGUI roundCount;
     
     void Start()
     {
@@ -48,5 +55,13 @@ public class PlayerHealth : MonoBehaviour
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1f);
         damagedMusic.volume = volume;
         damagedMusic.Play();
+        if (currentHealth <= 0)
+        {
+            Time.timeScale = 1;
+            endUI.SetActive(true);
+            escape.text = "YOU DIED!";
+            roundCount.text = "You Died in Round: " + roundManager.currentRound;
+            killCount.text = "Zombies Killed: " + player.killCount;
+        }
     }
 }

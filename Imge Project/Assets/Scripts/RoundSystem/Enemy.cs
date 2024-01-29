@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private PlayerPoints _playerPoints;
     private RoundManager _roundManager;
     public bool playerInvisible;
+
     //for the audios
     public AudioSource attck_audio;
     public AudioSource roar_audio;

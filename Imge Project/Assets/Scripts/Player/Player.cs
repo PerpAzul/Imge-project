@@ -19,7 +19,8 @@ public class Player : MonoBehaviour
     public float speed;
     public float gravity = -10f;
     public float jumpHeight;
-    
+    public int killCount;
+
     //Dash
     [SerializeField] private Transform orientation;
     [SerializeField] private float dashForce;
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
         AudioSource[] audioSources = GetComponents<AudioSource>();
         _playerPowers = gameObject.GetComponent<PlayerPowers>();
         dashImage.enabled = false;
+        killCount = 0;
     }
 
     void Update()

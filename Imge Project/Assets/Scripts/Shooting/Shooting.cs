@@ -15,6 +15,7 @@ public class Shooting : MonoBehaviour
     public float limitAmmo;
     public float ammo;
     public float reloadTime;
+    [SerializeField] private Player player;
 
     //UI
     [SerializeField] private TextMeshProUGUI ammoCount;
@@ -40,6 +41,7 @@ public class Shooting : MonoBehaviour
     public AudioClip fire;
     public AudioClip reload;
     public static float volume = 1.0f;
+    
     private void Start()
     {
         ammo = maxReload;
@@ -79,6 +81,10 @@ public class Shooting : MonoBehaviour
                 {
                     hitActive();
                     Invoke("hitDisable", 0.5f);
+                    if (target.health <= damage)
+                    {
+                        player.killCount++;
+                    }
                     target.TakeDamage(damage);
                 }
 
