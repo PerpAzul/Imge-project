@@ -12,6 +12,8 @@ public class LetterInteract : Interactable
     [SerializeField] private GameObject papers;
     public GameObject Text;
     private bool NomorePaper = false;
+    [SerializeField] private int index;
+    [SerializeField] private GameObject startRounds;
 
     private void Awake()
     {
@@ -35,6 +37,12 @@ public class LetterInteract : Interactable
             Text.SetActive(false);
             NomorePaper = false;
             Time.timeScale = 1;
+        }
+
+        if (index == 0)
+        {
+            startRounds.SetActive(true);
+            index++;
         }
     }
 }

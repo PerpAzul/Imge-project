@@ -9,7 +9,7 @@ public class MoneyInteract : Interactable
     
     protected override void Interact()
     {
-        points.currentPoints += amount;
+        points.AddPoints(amount);
         Destroy(gameObject);
     }
 }
