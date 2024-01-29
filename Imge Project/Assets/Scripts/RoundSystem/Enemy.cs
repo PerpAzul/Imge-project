@@ -124,5 +124,17 @@ public class Enemy : MonoBehaviour
     {
         zombieAnimator.SetTrigger("Invisibility");
     }
-    
+
+    public void WalkAgain()
+    {
+        zombieAnimator.SetTrigger("WalkAgain");
+        agent.speed = 0;
+        StartCoroutine(StartWalkingAgain());
+    }
+
+    private IEnumerator StartWalkingAgain()
+    {
+        yield return new WaitForSeconds(2f);
+        agent.speed = 4;
+    }
 }

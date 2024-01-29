@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
         _playerPowers = gameObject.GetComponent<PlayerPowers>();
         dashImage.enabled = false;
         killCount = 0;
+        StartCoroutine(ZombieSounds());
     }
 
     void Update()

@@ -84,9 +84,10 @@ public class PlayerPowers : MonoBehaviour
             _enemies[i].Stop();
         }
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(8);
         for (int i = 0; i < _enemies.Length; i++)
         {
+            _enemies[i].WalkAgain();
             _enemies[i].playerInvisible = false;
         }
         removePower(PowerUpInteractable.Power.Invisibility);

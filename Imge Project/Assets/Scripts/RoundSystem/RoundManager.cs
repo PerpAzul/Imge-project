@@ -29,7 +29,7 @@ public class RoundManager : MonoBehaviour
         _enemySpawner = FindObjectOfType<EnemySpawner>().GetComponent<EnemySpawner>();
         roundInProgress = false;
         roundUI.enabled = false;
-        startRoundUI.enabled = false;
+        startRoundUI.text = "Read the tablet to start";
         zombie.health = 30;
     }
 

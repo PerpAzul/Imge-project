@@ -58,6 +58,8 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             endUI.SetActive(true);
             escape.text = "YOU DIED!";
             roundCount.text = "You Died in Round: " + roundManager.currentRound;
