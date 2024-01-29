@@ -16,6 +16,7 @@ public class Car : Interactable
     [SerializeField] private TextMeshProUGUI escape;
     [SerializeField] private TextMeshProUGUI killCount;
     [SerializeField] private TextMeshProUGUI roundCount;
+    [SerializeField] private GameObject weaponH;
 
     protected override void Interact()
     {
@@ -25,6 +26,7 @@ public class Car : Interactable
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             endUI.SetActive(true);
+            weaponH.SetActive(false);
             escape.text = "YOU ESCAPED!";
             roundCount.text = "You Escaped in Round: " + roundManager.currentRound;
             killCount.text = "Zombies Killed: " + player.killCount;

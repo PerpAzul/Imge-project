@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private TextMeshProUGUI escape;
     [SerializeField] private TextMeshProUGUI killCount;
     [SerializeField] private TextMeshProUGUI roundCount;
+    [SerializeField] private GameObject weaponH;
     
     void Start()
     {
@@ -61,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             endUI.SetActive(true);
+            weaponH.SetActive(false);
             escape.text = "YOU DIED!";
             roundCount.text = "You Died in Round: " + roundManager.currentRound;
             killCount.text = "Zombies Killed: " + player.killCount;
