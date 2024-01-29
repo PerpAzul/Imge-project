@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
         damagedMusic.Play();
         if (currentHealth <= 0)
         {
-            Time.timeScale = 1;
+            Time.timeScale = 0;
             endUI.SetActive(true);
             escape.text = "YOU DIED!";
             roundCount.text = "You Died in Round: " + roundManager.currentRound;

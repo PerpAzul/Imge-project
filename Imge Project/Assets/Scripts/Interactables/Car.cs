@@ -21,7 +21,7 @@ public class Car : Interactable
     {
         if (key.hasKey && gas.hasKey && wrench.hasKey)
         {
-            Time.timeScale = 1;
+            Time.timeScale = 0;
             endUI.SetActive(true);
             escape.text = "YOU ESCAPED!";
             roundCount.text = "You Escaped in Round: " + roundManager.currentRound;

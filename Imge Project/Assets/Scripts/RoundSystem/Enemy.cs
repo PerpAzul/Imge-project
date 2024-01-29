@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private PlayerPoints _playerPoints;
     private RoundManager _roundManager;
     public bool playerInvisible;
+    private bool dying;
 
     //for the audios
     public AudioSource attck_audio;
@@ -42,9 +43,8 @@ public class Enemy : MonoBehaviour
                 attackTimer += Time.deltaTime;
                 if (attackTimer > 1f)
                 {
-                    zombieAnimator.SetBool("isAttacking", true);
+                    zombieAnimator.SetTrigger("Attack");
                     Attack();
-                    zombieAnimator.SetBool("isAttacking", false);
                     attackTimer = 0;   
                 }
             }
@@ -85,9 +85,28 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        zombieAnimator.SetBool("Dead", true);
+        if (dying)
+        {
+            return;
+        }
+        
         _playerPoints.AddPoints(100);
         _roundManager.ZombieKilled();
+
+        dying = true;
+        zombieAnimator.SetTrigger("Death");
+        agent.destination = gameObject.transform.position; // to avoid the enemy getting moved while dying
+        agent.speed = 0;
+        gameObject.tag = "Untagged";
+        StartCoroutine(DestroyOnceAnimationIsOver());
+    }
+
+    private IEnumerator DestroyOnceAnimationIsOver()
+    {
+        yield return new WaitForSeconds(0.5f); //wait a bit so the animation can start to play
+        yield return new WaitUntil(() =>
+            zombieAnimator.GetCurrentAnimatorStateInfo(0).IsName("dead") ==
+            false); // wait until the animation is done playing
         Destroy(gameObject);
     }
 
@@ -99,6 +118,11 @@ public class Enemy : MonoBehaviour
         {
             attck_audio.Play();
         }
+    }
+
+    public void Stop()
+    {
+        zombieAnimator.SetTrigger("Invisibility");
     }
     
 }

@@ -25,11 +25,6 @@ public class PlayerPowers : MonoBehaviour
         fadedDashImage.enabled = false;
         fadedInvisibilityImage.enabled = false;
     }
-    
-    void Update()
-    {
-        
-    }
 
     public void addPower(PowerUpInteractable.Power power)
     {
@@ -86,6 +81,7 @@ public class PlayerPowers : MonoBehaviour
         for (int i = 0; i < _enemies.Length; i++)
         {
             _enemies[i].playerInvisible = true;
+            _enemies[i].Stop();
         }
 
         yield return new WaitForSeconds(10);
