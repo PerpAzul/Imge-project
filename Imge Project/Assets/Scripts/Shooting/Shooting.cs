@@ -119,6 +119,7 @@ public class Shooting : MonoBehaviour
 
     IEnumerator Reloading()
     {
+        
         isReloading = true;
         
         animator.SetBool("Reloading", true);
@@ -140,11 +141,6 @@ public class Shooting : MonoBehaviour
             maxAmmo = 0;
         }
         
-        //music for reloading
-        audioSource.clip = reload;
-        audioSource.volume = volume;
-        audioSource.Play();
-        
         ammoCount.text =  ammo + "/10";
         isReloading = false;
     }
@@ -153,6 +149,10 @@ public class Shooting : MonoBehaviour
     {
         if (isReloading == false && maxAmmo > 0 && ammo < maxReload)
         {
+            //music for reloading at first
+            audioSource.clip = reload;
+            audioSource.volume = volume;
+            audioSource.Play();
             StartCoroutine(Reloading());  
         }
     }
