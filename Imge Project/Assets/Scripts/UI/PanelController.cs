@@ -24,9 +24,7 @@ public class PanelController : MonoBehaviour
     {
         //user can click esc to close the windows
         if (Input.GetKeyDown(KeyCode.Escape) && helpIsOpen)
-        {   
-            //Cursor.lockState = CursorLockMode.Locked;
-            //Cursor.visible = false;
+        {
             CloseHelp();
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && OptionIsOpen)

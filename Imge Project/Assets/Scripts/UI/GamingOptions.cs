@@ -22,7 +22,7 @@ public class GamingOptions : MonoBehaviour
     
     [SerializeField]
     private GameObject HelpPanel; //HelpButton
-    private static bool helpIsOpen = false;
+    public  static bool gamingHelpIsOpen = false;
     
     private struct res {
         public int width;
@@ -57,20 +57,31 @@ public class GamingOptions : MonoBehaviour
         Options.SetActive(false);
         gamingOptionIsOpen = false;
     }
-    // Update is called once per frame
-    void Update()
+    public void LoadHelp()
     {
-        int temp = (int)(30.0f * PlayerLook.sensitivityScale);
-        SensitivityText.text = temp.ToString();
-        VolumeText.text = (100 * Player.volume).ToString("###");
-        if (Input.GetKeyDown(KeyCode.Escape) && gamingOptionIsOpen)
-        {
-            CloseOptions();
-        }
-        if (Input.GetKeyDown(KeyCode.Escape) && helpIsOpen)
+        HelpPanel.SetActive(true); //HelpButton
+        gamingHelpIsOpen = true;
+    }
+
+    public void CloseHelp()
+    {
+        HelpPanel.SetActive(false); //HelpButton
+        gamingHelpIsOpen = false;
+    }
+    // Update is called once per frame
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && gamingHelpIsOpen)
         {
             CloseHelp();
         }
+        else if (Input.GetKeyDown(KeyCode.Escape) && gamingOptionIsOpen)
+        {
+            CloseOptions();
+        }
+        int temp = (int)(30.0f * PlayerLook.sensitivityScale);
+        SensitivityText.text = temp.ToString();
+        VolumeText.text = (100 * Player.volume).ToString("###");
     }
     public void changeS(float value)
     {
@@ -128,17 +139,6 @@ public void resolutionLeft()
         sensitivitySlider.value = PlayerLook.sensitivityScale;
         volumeSlider.value = Player.volume;
         fullScreenToggle.isOn = Screen.fullScreen;
-    }
-    public void LoadHelp()
-    {
-        HelpPanel.SetActive(true); //HelpButton
-        helpIsOpen = true;
-    }
-
-    public void CloseHelp()
-    {
-        HelpPanel.SetActive(false); //HelpButton
-        helpIsOpen = false;
     }
 
 }
