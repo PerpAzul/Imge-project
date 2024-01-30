@@ -38,7 +38,8 @@ public class UISetting : MonoBehaviour
 
     void Update()
     {
-        SensitivityText.text = PlayerLook.sensitivityScale.ToString("0.##");
+        int temp = (int)(30.0f * PlayerLook.sensitivityScale);
+        SensitivityText.text = temp.ToString();
         VolumeText.text = (100 * Player.volume).ToString("###");
     }
     public void changeSensitivity(float value)
