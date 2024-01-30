@@ -70,7 +70,7 @@ public class Pause : MonoBehaviour
         {
             PauseGame();
         }
-        else if (!GamingOptions.gamingOptionIsOpen)
+        else if (isPaused&&!GamingOptions.gamingOptionIsOpen&&!GamingOptions.gamingHelpIsOpen)
         {
             ContinueGame();
         }
