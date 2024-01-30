@@ -76,21 +76,24 @@ public class PlayerPowers : MonoBehaviour
 
     public IEnumerator becomeInvisible()
     {
-        _enemies = FindObjectsOfType<Enemy>();
-        invisibilityImage.enabled = false;
-        for (int i = 0; i < _enemies.Length; i++)
+        if (listPowers.Contains(PowerUpInteractable.Power.Invisibility))
         {
-            _enemies[i].playerInvisible = true;
-            _enemies[i].Stop();
+            _enemies = FindObjectsOfType<Enemy>();
+            invisibilityImage.enabled = false;
+            for (int i = 0; i < _enemies.Length; i++)
+            {
+                _enemies[i].playerInvisible = true;
+                _enemies[i].Stop();
+            }
+    
+            yield return new WaitForSeconds(8);
+            for (int i = 0; i < _enemies.Length; i++)
+            {
+                _enemies[i].WalkAgain();
+                _enemies[i].playerInvisible = false;
+            }
+            removePower(PowerUpInteractable.Power.Invisibility);
+            vendingMachine.GetComponent<BoxCollider>().enabled = true;
         }
-
-        yield return new WaitForSeconds(8);
-        for (int i = 0; i < _enemies.Length; i++)
-        {
-            _enemies[i].WalkAgain();
-            _enemies[i].playerInvisible = false;
-        }
-        removePower(PowerUpInteractable.Power.Invisibility);
-        vendingMachine.GetComponent<BoxCollider>().enabled = true;
     }
 }
