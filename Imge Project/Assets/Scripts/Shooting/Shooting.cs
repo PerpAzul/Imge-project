@@ -59,7 +59,7 @@ public class Shooting : MonoBehaviour
         if (!Pause.isPaused){
         ammoCount.text = ammo + "/" + maxAmmo;
 
-        if (ammo > 0 && isShooting == true)
+        if (ammo > 0 && isShooting && !isReloading)
         {
             ammo--;
             flash.Play();

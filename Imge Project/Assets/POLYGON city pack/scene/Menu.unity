@@ -2803,12 +2803,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "    XBOX                 Playstation\n     \n       Rs                        
-    R3\n       Ls                          L3\n    Rs (Hold)              R3 (Hold)\n       
+  m_text: "    XBOX                 Playstation\n     \n       RS                        
+    R3\n       LS                          L3\n   RS (Hold)               R3 (Hold)\n       
     A                        Cross\n        B                        Circle\n       
     X                       Square\n        Y                       Triangle\n      
-    L2                           LT\n       R2                          RT\n      
-    L1                           LB\n       R1                          RB\n    
+    LT                           L2\n       RT                          R2\n      
+    LB                           L1\n       RB                          R1\n    
     Start                        Start"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
