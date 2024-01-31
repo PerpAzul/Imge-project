@@ -12,9 +12,11 @@ public class RoundManager : MonoBehaviour
     private EnemySpawner _enemySpawner;
     [SerializeField] private Enemy zombie;
     [SerializeField] private PlayerHealth health;
-
+    
     [SerializeField] private TextMeshProUGUI roundUI;
     [SerializeField] private TextMeshProUGUI startRoundUI;
+    
+    public AudioSource roundChangeMusic;
 
     private bool spawnInMarket = true;
 
@@ -47,9 +49,25 @@ public class RoundManager : MonoBehaviour
         startRoundUI.enabled = true;
         zombiesToSpawn = CalculateZombiesToSpawn(currentRound);
         zombiesRemaining = zombiesToSpawn;
+        roundChangeMusic.Play();
         StartCoroutine(countdown(seconds));
         yield return new WaitForSeconds(seconds);
         SpawnZombies();
+        StartCoroutine(FadeOutMusic(roundChangeMusic, 2f));
+    }
+    
+    IEnumerator FadeOutMusic(AudioSource audioSource, float duration)
+    {
+        float startVolume = audioSource.volume;
+
+        for (float t = 0; t < duration; t += Time.deltaTime)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0, t / duration);
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume; // Reset volume for potential reuse
     }
 
     private IEnumerator countdown(float secondsLeft)
@@ -73,7 +91,7 @@ public class RoundManager : MonoBehaviour
         currentRound++;
         health.currentHealth = health.maxHealth;
         _enemySpawner.increaseZombieHealth(5);
-        StartCoroutine(StartRound(15f));
+        StartCoroutine(StartRound(10f));
     }
 
     int CalculateZombiesToSpawn(int round)

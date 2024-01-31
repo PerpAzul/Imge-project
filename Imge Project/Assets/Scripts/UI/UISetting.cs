@@ -20,7 +20,7 @@ public class UISetting : MonoBehaviour
     }
     private res[] Resolutions = new res[5];
     private int selectedResolution = 1;
-    // Update is called once per frame
+
     private void Awake()
     {
         fs_t.isOn = Screen.fullScreen;
@@ -53,6 +53,7 @@ public class UISetting : MonoBehaviour
         Shooting.volume = value;
         Enemy.volume = value;
         PlayerInteract.volume = value;
+        BackgroundMusicManager.changeVolume(value);
     }
     public void KlickFSToggle()
     {
