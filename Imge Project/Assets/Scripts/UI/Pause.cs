@@ -22,6 +22,7 @@ public class Pause : MonoBehaviour
     private void Awake()
     {
         Panel.SetActive(false);
+        isPaused = false;
         _playerInput2 = new PlayerInput2();
         playerActions = _playerInput2.PauseMenu;
         playerActions.OpenMenu.performed += _ => DeterminePause();
