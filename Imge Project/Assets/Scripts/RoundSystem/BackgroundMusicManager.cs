@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class BackgroundMusicManager : MonoBehaviour
 {
-    private static float volume = 0.21f;
+    private static float volume = 1f;
     
     public static void changeVolume(float value)
     {
-        Debug.Log(value);
-        volume = 0.2f * value;
+        volume = value;
     }
 
     private void Update()
