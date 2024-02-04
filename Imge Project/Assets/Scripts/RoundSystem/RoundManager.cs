@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RoundManager : MonoBehaviour
 {
@@ -91,6 +92,10 @@ public class RoundManager : MonoBehaviour
         currentRound++;
         health.currentHealth = health.maxHealth;
         _enemySpawner.increaseZombieHealth(5);
+        if (currentRound < 12)
+        {
+            _enemySpawner.increaseZombieSpeed(0.2f);
+        }
         StartCoroutine(StartRound(10f));
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
         supermarketSpawnPoints = GameObject.FindGameObjectsWithTag("SupermarketSpawnPoint");
         citySpawnPoints = GameObject.FindGameObjectsWithTag("CitySpawnPoint");
         Debug.Log("Length city spawn points: " + citySpawnPoints.Length);
+        zombiePrefab.GetComponent<NavMeshAgent>().speed = 4;
     }
 
     public IEnumerator SpawnZombiesInSupermarket(int numberOfEnemies)
@@ -66,5 +68,10 @@ public class EnemySpawner : MonoBehaviour
     public void increaseZombieHealth(int healthToIncrease)
     {
         zombiePrefab.GetComponent<Enemy>().health += healthToIncrease;
-    } 
+    }
+
+    public void increaseZombieSpeed(float speedToIncrease)
+    {
+        zombiePrefab.GetComponent<NavMeshAgent>().speed += speedToIncrease;
+    }
 }

@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f56763427dc1c34fb173c895d79977f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 40
+  health: 30
   zombieAnimator: {fileID: 4972802055694576266}
   playerInvisible: 0
   attck_audio: {fileID: 7018602104181699231}
